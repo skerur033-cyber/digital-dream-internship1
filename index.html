@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Mini Cab Booking</title>
+
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        background: #f4f6f8;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        margin: 0;
+    }
+
+    .box {
+        background: white;
+        padding: 25px;
+        width: 320px;
+        border-radius: 8px;
+        box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+    }
+
+    h2 {
+        text-align: center;
+        margin-bottom: 15px;
+    }
+
+    label {
+        font-weight: bold;
+        margin-top: 10px;
+        display: block;
+    }
+
+    input, select, button {
+        width: 100%;
+        padding: 8px;
+        margin-top: 5px;
+        border-radius: 5px;
+        border: 1px solid #ccc;
+    }
+
+    button {
+        background: #007bff;
+        color: white;
+        font-size: 16px;
+        margin-top: 15px;
+        cursor: pointer;
+    }
+
+    button:hover {
+        background: #0056b3;
+    }
+
+    .result {
+        margin-top: 15px;
+        background: #eef1f5;
+        padding: 10px;
+        border-radius: 5px;
+        font-weight: bold;
+    }
+</style>
+</head>
+
+<body>
+
+<div class="box">
+    <h2>🚖 Mini Cab Booking</h2>
+
+    <label>Name</label>
+    <input type="text" id="name" placeholder="Enter your name">
+
+    <label>Pickup Location</label>
+    <input type="text" id="pickup" placeholder="Pickup location">
+
+    <label>Drop Location</label>
+    <input type="text" id="drop" placeholder="Drop location">
+
+    <label>Cab Type</label>
+    <select id="cabType">
+        <option value="mini">Mini</option>
+        <option value="sedan">Sedan</option>
+        <option value="suv">SUV</option>
+    </select>
+
+    <button onclick="calculateFare()">Calculate Fare</button>
+
+    <div class="result" id="output"></div>
+</div>
+
+<script>
+function calculateFare() {
+    let name = document.getElementById("name").value;
+    let pickup = document.getElementById("pickup").value;
+    let drop = document.getElementById("drop").value;
+    let cabType = document.getElementById("cabType").value;
+
+    if (name === "" || pickup === "" || drop === "") {
+        alert("Please fill all details");
+        return;
+    }
+
+    // Demo distance calculation (random for project)
+    let distance = Math.floor(Math.random() * 15) + 5; // 5–20 km
+
+    let rate;
+    if (cabType === "mini") rate = 10;
+    else if (cabType === "sedan") rate = 15;
+    else rate = 20;
+
+    let fare = distance * rate;
+
+    document.getElementById("output").innerHTML =
+        "Name: " + name + "<br>" +
+        "Distance: " + distance + " km<br>" +
+        "Cab Type: " + cabType.toUpperCase() + "<br>" +
+        "Fare per km: ₹" + rate + "<br>" +
+        "<strong>Total Fare: ₹" + fare + "</strong>";
+}
+</script>
+
+</body>
+</html>
